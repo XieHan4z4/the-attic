@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Attic - Interactive Audio Experience</title>
+    <style>
+        /* 这里的代码控制全站的视觉氛围：纯黑、打字机字体、复古感 */
+        body {
+            background-color: #050505; /* 极其幽暗的背景色 */
+            color: #d0d0d0; /* 灰白色的文字，不刺眼 */
+            font-family: 'Courier New', Courier, monospace; /* 复古打字机字体 */
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px; /* 控制网页宽度，像读一本书 */
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
+            font-weight: normal;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #aaaaaa;
+            margin-top: 50px;
+            font-weight: normal;
+        }
+        p {
+            font-size: 1.1em;
+            text-align: justify;
+        }
+        .concept-box {
+            background-color: #111111;
+            padding: 20px;
+            border-left: 3px solid #555;
+            font-style: italic;
+            margin: 30px 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+            opacity: 0.8; /* 图片稍微调暗一点，契合主题 */
+            transition: opacity 0.3s ease;
+        }
+        img:hover {
+            opacity: 1; /* 鼠标放上去时图片变亮 */
+        }
+        .caption {
+            font-size: 0.9em;
+            color: #777;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        /* 定制一下音频播放器的外观颜色，适应暗黑主题 */
+        audio::-webkit-media-controls-panel {
+            background-color: #222;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <h1>The Attic</h1>
+    <p><strong>Team Members:</strong> [填入你们的名字]</p>
+
+    <div class="concept-box">
+        "In the noise, find peace; in the stillness, find memories."<br><br>
+        The Attic is an interactive audio experience that explores the contrast between modern anxiety and nostalgic peace. Set in a dimly lit environment, players rely primarily on their auditory senses to navigate and reconstruct fragmented pasts.
+    </div>
+
+    <h2>1. The Experience (Demo)</h2>
+    <p>A full walkthrough showing the transition from movement noise to the clarity of finding a memory object.</p>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>2. Sound Design</h2>
+    <p>The sounds of childhood objects were carefully mixed to sound slightly muffled, representing the grainy nature of old memories. Only when standing perfectly still does the static noise fade.</p>
+    
+    <p><strong>Audio 1: The Wooden Train (Raw vs. Mixed)</strong></p>
+    <audio controls>
+        <source src="train.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <p><strong>Audio 2: Global Static Noise (Movement)</strong></p>
+    <audio controls>
+        <source src="static_noise.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <h2>3. Technical Implementation</h2>
+    <p>Using Unreal Engine 5 to track player speed and spatial distance, and Max/MSP to control the audio mixing dynamically, the project creates an auditory radar system.</p>
+
+    <img src="ue5_blueprint.png" alt="UE5 Blueprint">
+    <div class="caption">UE5 Blueprint: Tracking speed and distance via OSC</div>
+
+    <img src="max_patcher.png" alt="Max MSP Patcher">
+    <div class="caption">Max/MSP Patcher: Receiving OSC data and dynamically adjusting volume levels.</div>
+
+    <img src="daw_mixing.png" alt="DAW Mixing Session">
+    <div class="caption">DAW Session: Pre-processing the memory fragments to fit the "attic" acoustic space.</div>
+
+    <h2>4. References</h2>
+    <ul>
+        <li>Unreal Engine OSC Plugin Documentation.</li>
+        <li>Cycling '74 Max/MSP Tutorials (Routing and Volume Mapping).</li>
+        <li><em>Blindscape</em> (Audio-driven navigation game).</li>
+        <li>John Cage's philosophy on "Silence and Noise".</li>
+    </ul>
+
+</div>
+
+</body>
+</html>
