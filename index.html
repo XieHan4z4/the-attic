@@ -14,7 +14,7 @@
             --border-color: #222;
         }
 
-        * { cursor: none; } /* 隐藏原生鼠标，使用自定义光圈 */
+        * { cursor: default; } /* 恢复默认鼠标，方便教授点击播放器 */
 
         body {
             background-color: var(--bg-color);
@@ -37,13 +37,14 @@
             z-index: 9999;
         }
 
-        /* 自定义手电筒光圈交互 */
+        /* 优化版手电筒：超大阅读光圈，柔和暗角边缘 */
         #flashlight {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             pointer-events: none;
-            background: radial-gradient(circle 150px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.98) 100%);
+            /* 将光圈扩大至 600px，中心区域完全透明以便阅读，边缘逐渐变暗至 95% */
+            background: radial-gradient(circle 600px at var(--x, 50vw) var(--y, 50vh), rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.95) 100%);
             z-index: 100;
         }
 
@@ -83,19 +84,19 @@
 
         .team-info {
             font-family: 'Courier New', monospace;
-            font-size: 12px;
+            font-size: 13px;
             letter-spacing: 2px;
-            color: var(--dim-text);
+            color: #888;
             margin-top: 20px;
             text-transform: uppercase;
         }
 
-        /* --- 章节布局：非对称感 --- */
+        /* --- 章节布局：动态模糊进入效果 --- */
         section {
-            margin-bottom: 200px;
+            margin-bottom: 150px;
             opacity: 0;
-            transform: translateY(30px);
-            filter: blur(10px);
+            transform: translateY(40px);
+            filter: blur(8px);
             transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -107,36 +108,57 @@
 
         .section-label {
             font-family: 'Courier New', monospace;
-            font-size: 10px;
-            color: var(--dim-text);
+            font-size: 12px;
+            color: #888;
             margin-bottom: 10px;
             display: block;
+            border-bottom: 1px solid #222;
+            padding-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #eee;
+            margin-top: 20px;
+            font-weight: normal;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #aaa;
+            margin-top: 40px;
+        }
+
+        p, li {
+            font-size: 1.15em;
         }
 
         /* 核心概念框：复古纸质感 */
         .concept-card {
-            background: rgba(15,15,15,0.5);
+            background: rgba(15,15,15,0.6);
             border: 1px solid var(--border-color);
-            padding: 60px;
+            padding: 50px;
             position: relative;
-            margin: 80px 0;
+            margin: 60px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .concept-card::after {
             content: "TOP SECRET / MEMORY LOG";
             position: absolute;
-            top: -10px; right: 20px;
+            top: -12px; right: 20px;
             background: #222;
-            padding: 2px 10px;
-            font-size: 10px;
-            color: #555;
+            padding: 4px 12px;
+            font-size: 11px;
+            color: #777;
+            font-family: 'Courier New', monospace;
         }
 
         /* 图片容器：艺术展出感 */
         .media-frame {
             position: relative;
-            margin: 60px 0;
+            margin: 50px 0;
             overflow: hidden;
-            border: 1px solid #1a1a1a;
+            border: 1px solid #222;
             background: #000;
         }
 
@@ -144,25 +166,43 @@
             width: 100%;
             height: auto;
             display: block;
-            opacity: 0.4;
-            filter: sepia(0.3);
-            transition: all 0.8s ease;
+            opacity: 0.6;
+            filter: sepia(0.2) contrast(1.1);
+            transition: all 0.5s ease;
+            cursor: pointer;
         }
 
         .media-frame:hover img {
             opacity: 1;
             transform: scale(1.02);
-            filter: sepia(0);
+            filter: sepia(0) contrast(1);
         }
 
         .img-annotation {
             position: absolute;
             bottom: 20px; right: 20px;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
             font-family: 'Courier New', monospace;
-            font-size: 10px;
-            color: rgba(255,255,255,0.3);
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
             text-align: right;
             pointer-events: none;
+            border: 1px solid #333;
+        }
+
+        /* 视频容器 */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 50px 0;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
 
         /* 声音列表：磁带盒设计 */
@@ -176,42 +216,42 @@
         .sound-cassette {
             border: 1px solid #1a1a1a;
             padding: 20px;
-            background: linear-gradient(145deg, #0a0a0a, #050505);
+            background: linear-gradient(145deg, #0f0f0f, #050505);
             transition: border 0.3s;
         }
         .sound-cassette:hover {
-            border-color: #444;
+            border-color: #555;
         }
         .sound-cassette strong {
             font-family: 'Courier New', monospace;
             font-size: 14px;
-            color: #999;
+            color: #aaa;
             display: block;
             margin-bottom: 10px;
         }
 
         audio {
             width: 100%;
-            height: 30px;
-            filter: invert(1) brightness(0.7);
+            height: 35px;
+            filter: invert(1) brightness(0.8);
         }
 
         /* 参考文献：学术尾注风格 */
         .references {
             font-size: 0.9em;
             color: var(--dim-text);
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid #222;
             padding-top: 40px;
         }
 
-        /* 装饰元素 */
+        /* 背景微光网格装饰 */
         .grid-decor {
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
+            background-image: radial-gradient(#222 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
             z-index: -1;
         }
 
@@ -223,20 +263,28 @@
 
     <header>
         <div class="grid-decor"></div>
-        <span class="section-label">PROJECT ARCHIVE NO. 59938176</span>
+        <span class="section-label" style="border: none;">PROJECT ARCHIVE NO. 59938176</span>
         <h1>The Attic</h1>
         <div class="team-info">
-            XIE HAN | WONG SZE YUI | YIN YIHE <br>
-            [ SCHOOL OF CREATIVE MEDIA ]
+            XIE HAN (59938176) &nbsp;|&nbsp; WONG SZE YUI (56286397) &nbsp;|&nbsp; YIN YIHE (59968783) <br><br>
+            [ AN INTERACTIVE SOUND EXPERIENCE ]
         </div>
     </header>
 
     <div class="container">
 
+        <section id="demo">
+            <span class="section-label">FIG. 00 // PROJECT DEMONSTRATION</span>
+            <h2>The Experience</h2>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
         <section id="concept">
             <span class="section-label">FIG. 01 // CORE CONCEPT</span>
             <div class="concept-card">
-                <p style="font-size: 1.4em; font-style: italic;">
+                <p style="font-size: 1.4em; font-style: italic; color: #fff;">
                     "Memory is a dusty attic where clarity must be earned through stillness."
                 </p>
                 <p>
@@ -247,16 +295,9 @@
 
         <section id="background">
             <span class="section-label">FIG. 02 // RESEARCH & CONTEXT</span>
-            <div style="display: flex; gap: 40px; align-items: flex-start;">
-                <div style="flex: 2;">
-                    <h2>The Subconscious Repository</h2>
-                    <p>Inspired by <b>John Cage</b> and the concept of <i>Sensory Deprivation</i>, our work explores the attic as a quintessentially psychological space. As the highest and most neglected part of a house, it serves as a metaphor for the deep subconscious. By enforcing visual restraint, we shift the hierarchy of senses, rewarding the participant's auditory focus with clarity that vision can no longer provide.</p>
-                </div>
-                <div style="flex: 1; border: 1px solid #1a1a1a; padding: 10px;">
-                    <img src="image_89c255.png" alt="Inspiration" style="opacity: 0.8;">
-                    <p style="font-size: 10px; color: #444; font-family: monospace; margin: 10px 0 0;">REF. 202-A: <br>LIGHTING STUDIES</p>
-                </div>
-            </div>
+            <h2>The Subconscious Repository</h2>
+            <p>Inspired by <b>John Cage</b> and the concept of <i>Sensory Deprivation</i>, our work explores the attic as a quintessentially psychological space. As the highest and most neglected part of a house, it serves as a metaphor for the deep subconscious.</p>
+            <p>By enforcing extreme visual restraint, we shift the hierarchy of senses. We force the participant to abandon their ocular-centric habits and rely entirely on an "auditory radar." This sensory shift amplifies the emotional impact of finally "finding" a sound in the void.</p>
         </section>
 
         <section id="scene">
@@ -273,14 +314,14 @@
 
             <div class="media-frame">
                 <img src="cc5d0e1d45ed730538ccbc5a70a3ce43.jpg" alt="Exhibition site">
-                <div class="img-annotation">EXHIBITION SITE: DOCUMENTATION<br>STUDIO 206 / NO. 04-30</div>
+                <div class="img-annotation">EXHIBITION SITE: DOCUMENTATION<br>STUDIO PROJECTION SETUP</div>
             </div>
         </section>
 
         <section id="sounds">
             <span class="section-label">FIG. 04 // AUDITORY ARTIFACTS</span>
             <h2>Memory Fragment Gallery</h2>
-            <p>Processed via Audacity, these 11 sound layers were designed to sound "hazy" and "distant" through Low-Pass filtering and vintage distortion.</p>
+            <p>Processed via Audacity, these 11 sound layers were designed to sound "hazy" and "distant." We heavily applied Low-Pass and High-Pass filters to remove modern clarity, and used Reverb to simulate the acoustics of a wooden attic.</p>
             
             <div class="sound-grid">
                 <div class="sound-cassette"><strong>00. AMBIENT STATIC</strong><audio controls src="bg_noise.mp3"></audio></div>
@@ -299,50 +340,74 @@
 
         <section id="technical">
             <span class="section-label">FIG. 05 // SYSTEM BLUEPRINTS</span>
-            <h2>Technical Bridge (UE5 + Max/MSP)</h2>
-            <p>Our pipeline bridges spatial data and algorithmic mixing via the OSC protocol. UE5 handles the "Measurement" while Max/MSP handles the "Affect."</p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
-                <div>
-                    <img src="image_7bb1dd.png" alt="Blueprint 1">
-                    <p style="font-family: monospace; font-size: 11px; color: #555;">[ LOG_01 ] EVENT TICK: VELOCITY TO OSC</p>
-                </div>
-                <div>
-                    <img src="image_8a23ef.png" alt="Max Logic">
-                    <p style="font-family: monospace; font-size: 11px; color: #555;">[ LOG_02 ] MAX: BG SOUND SUPPRESSION</p>
-                </div>
-            </div>
+            <h2>Technical Implementation</h2>
+            <p>The core technical challenge of this project was translating the player's physical behavior in a 3D space into dynamic audio mixing parameters in real-time. To achieve this, we built a dual-end communication system based on the <b>OSC (Open Sound Control)</b> protocol.</p>
             
-            <p>Technical Highlight: <b>Speed-Driven Modulation.</b> We mapped the player's real-time velocity to the modulation parameters in Max. Fast movement results in a metallic, chaotic timbre, providing immediate auditory negative feedback.</p>
+            <h3>Unreal Engine 5: Spatial Calculation</h3>
+            <div class="media-frame">
+                <img src="image_7bb1dd.png" alt="UE5 OSC Speed Blueprint">
+                <div class="img-annotation">UE5 LOGIC: VELOCITY TO OSC<br>NODE: EVENT TICK</div>
+            </div>
+            <ul>
+                <li><strong>Data Transmission:</strong> Within the <code>Event Tick</code>, we continuously calculate the distance between the Player Character and the 10 memory objects, alongside the player's current velocity (Velocity -> Vector Length XY). These values are sent to Max/MSP via local port 8000.</li>
+                <li><strong>Interactive Lighting:</strong> When a player enters an object's <code>Sphere Overlap</code>, a hidden <code>Point Light</code> is triggered. Using a <code>Map Range Clamped</code> node, the distance data is inversely mapped to the light's intensity.</li>
+            </ul>
+
+            <div class="media-frame">
+                <img src="image_89c59a.png" alt="UE5 Light Mapping">
+                <div class="img-annotation">UE5 LOGIC: DISTANCE TO LIGHT<br>NODE: MAP RANGE CLAMPED</div>
+            </div>
+
+            <h3>Max/MSP: Algorithmic Mixing</h3>
+            <div class="media-frame">
+                <img src="image_8a23ef.png" alt="Max MSP Background Suppression">
+                <div class="img-annotation">MAX/MSP: ROUTING & SUPPRESSION<br>NODE: ZL.SORT / PAK</div>
+            </div>
+            <ul>
+                <li><strong>Background Suppression Logic:</strong> To emphasize the tranquility of "discovering a memory," we used <code>pak</code> and <code>zl.sort</code> nodes to identify the closest object. As the player approaches it, the system raises the object's volume and simultaneously <strong>attenuates</strong> the global Background Sound.</li>
+                <li><strong>Speed-Driven Noise Modulation:</strong> We tied the received player velocity (<code>/speed</code>) directly to the Modulation and Audio Gain parameters of the background sound. High velocity triggers severe algorithmic modulation, generating an uncomfortable, metallic distortion that instinctively forces the player to slow down.</li>
+            </ul>
+
+            <div class="media-frame">
+                <img src="image_8a1f77.png" alt="Max MSP Speed Modulation">
+                <div class="img-annotation">MAX/MSP: SPEED TO MODULATION<br>CORE ALGORITHMIC FEEDBACK</div>
+            </div>
         </section>
 
         <section id="reflection" class="references">
             <span class="section-label">FIG. 06 // POST-PROJECT REFLECTION</span>
-            <p><i>The Attic</i> stands as a rebellion against the ocular-centric nature of modern interaction. By removing the safety of vision, we invited participants to "listen" to their own past. The project confirms that emotional immersion is most powerful when it requires the user's active, patient participation.</p>
+            <h3 style="margin-top: 0; color: #fff;">Subverting the Visual Hierarchy</h3>
+            <p><i>The Attic</i> stands as a rebellion against traditional interactive design. By removing the safety of vision, we invited participants to "listen" to their own past. The project confirms that emotional immersion is most powerful when it requires the user's active, patient participation.</p>
             
-            <h3 style="margin-top: 60px;">References</h3>
-            <p style="font-family: monospace; font-size: 12px; line-height: 2;">
-                - Brown, G. (2014). <i>Blindscape</i>. [Game]. <br>
+            <h3 style="margin-top: 50px;">References</h3>
+            <p style="font-family: monospace; font-size: 13px; line-height: 2;">
+                - Brown, G. (2014). <i>Blindscape</i>. [Audio Game]. <br>
                 - Cage, J. (1961). <i>Silence: Lectures and Writings</i>. Wesleyan University Press. <br>
-                - Cycling '74. <i>Max/MSP Documentation: UDP & OSC</i>. <br>
-                - Epic Games. <i>Unreal Engine 5 Documentation: Blueprint OSC Plugin</i>.
+                - Cycling '74. <i>Max/MSP Documentation: UDP & OSC Routing</i>. <br>
+                - Epic Games. <i>Unreal Engine 5 Documentation: Blueprint OSC Plugin</i>. <br>
+                - Audio Assets sourced from Freesound.org & Pixabay.com (Edited by Team).
             </p>
         </section>
 
     </div>
 
     <script>
+        // 手电筒坐标跟踪
         const flashlight = document.getElementById('flashlight');
         document.addEventListener('mousemove', e => {
             flashlight.style.setProperty('--x', e.clientX + 'px');
             flashlight.style.setProperty('--y', e.clientY + 'px');
         });
 
+        // 监听滚动，实现记忆浮现（模糊变清晰）效果
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                // 当板块进入视口15%时触发浮现
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.15 });
 
         document.querySelectorAll('section').forEach(section => observer.observe(section));
     </script>
