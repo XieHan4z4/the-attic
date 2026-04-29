@@ -3,87 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Attic - Interactive Audio Experience</title>
+    <title>The Attic | Interactive Sound Experience</title>
     <style>
-        /* 这里的代码控制全站的视觉氛围：纯黑、打字机字体、复古感 */
+        /* 整体氛围：纯黑背景，复古米色文字 */
         body {
-            background-color: #050505; /* 极其幽暗的背景色 */
-            color: #d0d0d0; /* 灰白色的文字，不刺眼 */
-            font-family: 'Courier New', Courier, monospace; /* 复古打字机字体 */
+            background-color: #050505;
+            color: #d1c7bc; 
+            font-family: 'Constantia', 'Georgia', serif; /* 经典的衬线体，更有艺术感 */
             line-height: 1.8;
             margin: 0;
             padding: 0;
         }
         .container {
-            max-width: 800px; /* 控制网页宽度，像读一本书 */
+            max-width: 850px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 80px 20px;
         }
         h1 {
-            font-size: 3em;
+            font-size: 3.8em;
             color: #ffffff;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            letter-spacing: 2px;
-            font-weight: normal;
+            text-align: center;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .team-id {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #777;
+            margin-bottom: 70px;
+            font-size: 0.9em;
         }
         h2 {
-            font-size: 1.5em;
-            color: #aaaaaa;
-            margin-top: 50px;
+            font-size: 2em;
+            color: #eee;
+            margin-top: 70px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
             font-weight: normal;
         }
-        p {
-            font-size: 1.1em;
+        h3 {
+            font-size: 1.3em;
+            color: #999;
+            margin-top: 40px;
+        }
+        p, li {
+            font-size: 1.15em;
             text-align: justify;
         }
-        .concept-box {
-            background-color: #111111;
-            padding: 20px;
-            border-left: 3px solid #555;
+        .quote-box {
+            background-color: rgba(15, 15, 15, 0.9);
+            padding: 40px;
+            border-left: 2px solid #444;
+            margin: 50px 0;
             font-style: italic;
-            margin: 30px 0;
+            font-size: 1.2em;
+            color: #e0d6c8;
         }
+        /* 图片交互：默认暗淡，悬停时点亮（模拟手电筒效果） */
         img {
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 20px 0;
-            opacity: 0.8; /* 图片稍微调暗一点，契合主题 */
-            transition: opacity 0.3s ease;
+            margin: 40px auto 10px auto;
+            opacity: 0.5;
+            filter: grayscale(40%);
+            transition: all 0.6s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
         img:hover {
-            opacity: 1; /* 鼠标放上去时图片变亮 */
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.01);
         }
         .caption {
-            font-size: 0.9em;
-            color: #777;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            color: #555;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+        }
+        /* 视频容器 */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin: 50px 0;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+        /* 音频播放器统一样式 */
+        .audio-card {
+            background-color: #0f0f0f;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            border: 1px solid #1a1a1a;
+        }
+        .audio-card strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #aaa;
+            font-family: 'Courier New', monospace;
         }
         audio {
             width: 100%;
-            margin-top: 10px;
-            margin-bottom: 30px;
+            filter: invert(100%) hue-rotate(180deg) brightness(0.8);
         }
-        /* 定制一下音频播放器的外观颜色，适应暗黑主题 */
-        audio::-webkit-media-controls-panel {
-            background-color: #222;
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 比例 */
-            height: 0;
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -91,52 +120,130 @@
 <div class="container">
     
     <h1>The Attic</h1>
-    <p><strong>Team Members:</strong> [填入你们的名字]</p>
-
-    <div class="concept-box">
-        "In the noise, find peace; in the stillness, find memories."<br><br>
-        The Attic is an interactive audio experience that explores the contrast between modern anxiety and nostalgic peace. Set in a dimly lit environment, players rely primarily on their auditory senses to navigate and reconstruct fragmented pasts.
+    <div class="team-id">
+        XIE Han (59938176) &nbsp;|&nbsp; Wong Sze Yui (56286397) &nbsp;|&nbsp; YIN Yihe (59968783)
     </div>
 
-    <h2>1. The Experience (Demo)</h2>
-    <p>A full walkthrough showing the transition from movement noise to the clarity of finding a memory object.</p>
-    <div class="video-container">
+    <div class="quote-box">
+        "The Attic" is an immersive sound experience that mirrors the fragmented nature of human memory. In a world of perpetual motion, our past often becomes a hazy cacophony. Here, memory is literalized as a dimly lit attic—a space where clarity is not given, but earned through stillness and proximity. 
+        <br><br>
+        Movement generates restlessness (static noise), while silence and careful approach allow the "echoes" of childhood—an old music box, a toy train—to emerge from the darkness.
+    </div>
+
+    <h2>0. Project Demonstration</h2>
+    <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <h2>2. Sound Design</h2>
-    <p>The sounds of childhood objects were carefully mixed to sound slightly muffled, representing the grainy nature of old memories. Only when standing perfectly still does the static noise fade.</p>
+    <h2>1. Background & Inspiration</h2>
+    <p>Our research for <i>The Attic</i> spanned three interconnected dimensions: the philosophy of noise, the psychology of memory spaces, and the mechanics of sensory deprivation.</p>
     
-    <p><strong>Audio 1: The Wooden Train (Raw vs. Mixed)</strong></p>
-    <audio controls>
-        <source src="train.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <h3>The Relativity of Noise and Silence</h3>
+    <p>Inspired by <strong>John Cage</strong>, we view silence not as the absence of sound, but as a state of heightened receptivity. In modern life, "internal noise" (anxiety and pace) drowns out our core memories. We translated this into a game mechanic: player movement triggers a global distortion, representing the chaotic pace of adulthood. Stillness, therefore, becomes the "key" to filtering out the noise of the present to hear the whispers of the past.</p>
 
-    <p><strong>Audio 2: Global Static Noise (Movement)</strong></p>
-    <audio controls>
-        <source src="static_noise.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+    <h3>The Attic as a Psychological Repository</h3>
+    <p>The attic is the quintessential metaphor for the subconscious—a dusty, neglected space at the top of the house where the past is stored. By placing the experience in a near-pitch-black attic, we simulate the effort required to recall a specific moment. The volume attenuation based on distance mimics the psychological process of a memory shifting from a blurred impression to a vivid recollection.</p>
 
-    <h2>3. Technical Implementation</h2>
-    <p>Using Unreal Engine 5 to track player speed and spatial distance, and Max/MSP to control the audio mixing dynamically, the project creates an auditory radar system.</p>
+    <h3>Sensory Deprivation & Blind Navigation</h3>
+    <p>Drawing from pure-audio experiences like <i>Blindscape</i>, we implemented extreme visual restraint. By removing conventional lighting, we force the participant to abandon their ocular-centric habits and rely entirely on an "auditory radar." This sensory shift amplifies the emotional impact of finally "finding" a sound in the void.</p>
 
-    <img src="ue5_blueprint.png" alt="UE5 Blueprint">
-    <div class="caption">UE5 Blueprint: Tracking speed and distance via OSC</div>
+    <h2>2. Scene & Experience Design</h2>
+    <p>We followed a philosophy of "Minimalism and Sensory Deprivation" across both virtual and physical environments to ensure a unified experience.</p>
+    
+    <h3>Virtual Environment: Edge-based Navigation</h3>
+    <img src="image_89cd41.jpg" alt="UE5 Scene Layout">
+    <div class="caption">Virtual Layout: 10 memory objects distributed along the boundaries of the attic.</div>
+    <p>To assist players in a visually pitch-black environment, we utilized an "edge-based" layout. By placing all 10 objects along the walls, the physical boundary of the room acts as a guide. When players feel the "collision" in the dark, they can naturally follow the wall to discover the hidden audio fragments.</p>
 
-    <img src="max_patcher.png" alt="Max MSP Patcher">
-    <div class="caption">Max/MSP Patcher: Receiving OSC data and dynamically adjusting volume levels.</div>
+    <h3>Physical Exhibition: Atmospheric Synergy</h3>
+    <img src="cc5d0e1d45ed730538ccbc5a70a3ce43.jpg" alt="Exhibition Setup">
+    <div class="caption">Exhibition Site: Utilizing dual-channel speakers and a projector in a darkened room.</div>
+    <p>The physical exhibition utilized a projector, dual speakers, and a controller. To preserve the immersion, the physical room was kept as dark as possible. This created a synergy where the boundaries between the physical room and the virtual attic blurred. Furthermore, we customized the <strong>controller response curve</strong> in the engine, requiring participants to push the joystick with extreme delicacy to move, mirroring the psychological caution of navigating a dark, fragile memory.</p>
 
-    <img src="daw_mixing.png" alt="DAW Mixing Session">
-    <div class="caption">DAW Session: Pre-processing the memory fragments to fit the "attic" acoustic space.</div>
+    <h2>3. Sound Design & Audio Processing</h2>
+    <p>We curated 10 nostalgic objects and 1 ambient background layer to construct the sonic world. All assets (sourced from Freesound and Pixabay) were heavily re-processed in <strong>Audacity</strong> to achieve a "muffled, hazy, and distant" timbre.</p>
+    
+    <img src="audacity_screenshot.png" alt="Audacity Processing">
+    <div class="caption">Audio post-processing: Using Low-Pass filters and Reverb to create a vintage aesthetic.</div>
 
-    <h2>4. References</h2>
+    <h3>Memory Fragments Gallery</h3>
+    <p><i>(Please interact with the clips below to hear the processed memory fragments.)</i></p>
+    
+    <div class="audio-card">
+        <strong>Ambient Background:</strong> A mix of heartbeats, white noise, and attic creaks.
+        <audio controls><source src="bg_noise.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>01. Acoustic Guitar:</strong> Warm, woody resonance with attenuated high frequencies.
+        <audio controls><source src="guitar.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>02. Music Box:</strong> Blended with distant sounds of children playing.
+        <audio controls><source src="musicbox.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>03. Retro Gaming:</strong> Mario BGM processed through heavy distortion to mimic an old CRT TV.
+        <audio controls><source src="mario.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>04. Cassette & Education:</strong> Authentic Chinese English listening materials with a mechanical tape-loading sound.
+        <audio controls><source src="tape.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>05. Mechanical Clock:</strong> A rhythmic ticking representing the stagnation of time in memory.
+        <audio controls><source src="clock.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>06. Radio Static:</strong> Flickering BBC radio broadcasts through radio interference.
+        <audio controls><source src="radio.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>07. Vintage TV:</strong> High-frequency static hum and faint game noises.
+        <audio controls><source src="tv.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>08. Toy Soldier:</strong> The Nutcracker suite mixed with the sound of winding clockwork.
+        <audio controls><source src="soldier.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>09. Wooden Train:</strong> Distant train whistles and the rhythmic rumble of tracks.
+        <audio controls><source src="train.mp3" type="audio/mpeg"></audio>
+    </div>
+    <div class="audio-card">
+        <strong>10. Handwriting & Piano:</strong> Pencil scratching on paper accompanied by a soft piano melody.
+        <audio controls><source src="notes.mp3" type="audio/mpeg"></audio>
+    </div>
+
+    <h2>4. Technical Implementation</h2>
+    <p>The system utilizes a dual-engine architecture: <strong>Unreal Engine 5</strong> for spatial data and <strong>Max/MSP</strong> for algorithmic mixing, bridged via the OSC (Open Sound Control) protocol.</p>
+    
+    <h3>UE5: Spatial Tracking & Visual Feedback</h3>
+    <img src="image_7bb1dd.png" alt="UE5 OSC Logic">
+    <div class="caption">UE5 Blueprint: Calculating player velocity and object distances for OSC output.</div>
+    <p>We calculated the distance between the player and the 10 objects in real-time, alongside the player's velocity. These values were packaged as OSC messages and sent to Max/MSP via local port 8000.</p>
+
+    <img src="image_89c59a.png" alt="UE5 Visual Feedback">
+    <div class="caption">Visual Feedback: Mapping distance to Point Light intensity via "Map Range Clamped."</div>
+
+    <h3>Max/MSP: Algorithmic Mixing & Modulation</h3>
+    <img src="image_8a231c.png" alt="Max MSP Routing">
+    <div class="caption">Max/MSP: Data routing and volume attenuation based on spatial proximity.</div>
+    
+    <p><strong>Background Suppression:</strong> Using <code>zl.sort</code>, Max/MSP identifies the closest object. As the player approaches, the system attenuates the global background noise to create a "clarity effect" for the specific memory.</p>
+
+    <img src="image_8a1f77.png" alt="Max MSP Speed Modulation">
+    <div class="caption">Speed-Driven Modulation: Mapping velocity to metallic distortion and gain.</div>
+    <p>The core artistic feedback is the <strong>Speed-Driven Modulation</strong>. High velocity values trigger aggressive algorithmic modulation, creating a chaotic, metallic noise that instinctively encourages players to slow down or stand still.</p>
+
+    <h2>5. Reflection & References</h2>
+    <h3>Subverting the Visual Hierarchy</h3>
+    <p><i>The Attic</i> was a deliberate rebellion against traditional game design, which often treats sound as a secondary garnish to visuals. We asked: Can we build narrative through sound alone? By enforcing visual deprivation and mapping movement to "noise," we successfully shifted the focus to the auditory realm. The feedback from participants confirmed that the "relief" of finding a clear sound in the void is a powerful emotive force that high-definition graphics cannot replicate.</p>
+
+    <h3>References</h3>
     <ul>
-        <li>Unreal Engine OSC Plugin Documentation.</li>
-        <li>Cycling '74 Max/MSP Tutorials (Routing and Volume Mapping).</li>
-        <li><em>Blindscape</em> (Audio-driven navigation game).</li>
-        <li>John Cage's philosophy on "Silence and Noise".</li>
+        <li><strong>Artistic:</strong> John Cage, <i>Silence: Lectures and Writings</i>; Gavin Brown, <i>Blindscape</i>.</li>
+        <li><strong>Technical:</strong> UE5 OSC Documentation; Cycling '74 Max/MSP Routing Tutorials.</li>
+        <li><strong>Assets:</strong> Sourced from Freesound.org & Pixabay.com. All assets were re-mixed and processed via Audacity.</li>
     </ul>
 
 </div>
