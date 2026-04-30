@@ -26,7 +26,7 @@
             background-attachment: fixed;
         }
 
-        /* 增加一点复古胶片噪点纹理 */
+        /* 复古胶片噪点纹理 */
         body::after {
             content: "";
             position: fixed;
@@ -43,7 +43,7 @@
             padding: 80px 30px;
         }
 
-        /* --- Typography (排版与字体) --- */
+        /* --- Typography --- */
         h1 {
             font-size: 4em;
             letter-spacing: 12px;
@@ -88,7 +88,7 @@
             text-align: justify;
         }
 
-        /* --- 核心概念高亮框 --- */
+        /* --- Layout Elements --- */
         .concept-box {
             background-color: rgba(20, 20, 20, 0.8);
             border: 1px solid var(--border-color);
@@ -103,7 +103,7 @@
             font-size: 1.25em;
         }
 
-        /* --- 图片画框样式 --- */
+        /* --- Images & Media --- */
         .media-frame {
             margin: 50px 0;
             background: #000;
@@ -133,7 +133,7 @@
             padding-bottom: 10px;
         }
 
-        /* --- 声音列表网格 --- */
+        /* --- Audio Grid --- */
         .audio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -167,7 +167,7 @@
             outline: none;
         }
 
-        /* --- 滚动浮现动画 --- */
+        /* --- Animations (滚动平滑浮现) --- */
         .fade-section {
             opacity: 0;
             transform: translateY(30px);
@@ -200,6 +200,7 @@
 
     <div class="container">
 
+        <!-- Header -->
         <header class="fade-section">
             <h1>The Attic</h1>
             <div class="team-info">
@@ -207,6 +208,7 @@
             </div>
         </header>
 
+        <!-- Concept -->
         <section class="fade-section">
             <div class="concept-box">
                 <p>"The Attic" is an interactive sound experience about exploring childhood memories. We materialized the process of human recollection as fumbling in a dark attic. Memories are often fragmented and blurred, just like the objects in this near-pitch-black environment (e.g., an old music box, a toy train) that initially sound like a chaotic mass.</p>
@@ -214,6 +216,7 @@
             </div>
         </section>
 
+        <!-- Background & Inspiration -->
         <section class="fade-section">
             <h2>1. Background & Inspiration</h2>
             <p>In the early stages of creating "The Attic", our background research focused on three dimensions: noise and silence in sound art, memory metaphors in spatial psychology, and sensory deprivation-based interactive experiences.</p>
@@ -228,12 +231,14 @@
             <p>In traditional interactive media, "vision" often dominates, making sound a mere accessory. To maximize the artistic tension of hearing, we researched pure-audio-driven works like <i>Blindscape</i>. We decided to employ extreme "visual restraint" in Unreal Engine 5 (UE5), removing most lighting and keeping only extremely faint starlight to outline silhouettes. This mild "Sensory Deprivation" forces experiencers to abandon their reliance on eyes and concentrate all their attention on their auditory radar, thereby greatly amplifying the immersion and emotional impact of finding a specific sound.</p>
         </section>
 
+        <!-- Scene & Experience Design -->
         <section class="fade-section">
             <h2>2. Scene & Experience Design</h2>
             <p>To fully immerse experiencers in the sonic narrative, our virtual scene design and physical exhibition layout followed the principles of "minimalism and visual deprivation," striving for unity between virtual and physical experiences.</p>
 
             <h3>Virtual Restraint & Scene Layout</h3>
             <div class="media-frame">
+                <!-- 简单命名: ue5_scene_layout.jpg -->
                 <img src="ue5_scene_layout.jpg" alt="UE5 Scene Layout">
                 <div class="caption">Virtual Layout: UE5 scene layout where 10 memory objects are evenly distributed along the edges.</div>
             </div>
@@ -241,6 +246,7 @@
 
             <h3>Physical Interaction & Exhibition Setup</h3>
             <div class="media-frame">
+                <!-- 简单命名: exhibition_setup.jpg -->
                 <img src="exhibition_setup.jpg" alt="Exhibition Setup">
                 <div class="caption">Exhibition site with projector, dual speakers, and controller.</div>
             </div>
@@ -248,6 +254,7 @@
             <p>For interactive devices, we used a controller for movement. As our concept stated "movement is anxiety," we modified the joystick's Response Curve at the engine level. Experiencers must push the joystick extremely slowly and restrainedly to tip-toe through the dark. This physical "micro-control resistance" of the fingers perfectly resonates with the psychological caution of exploring in the dark.</p>
         </section>
 
+        <!-- Sound Design -->
         <section class="fade-section">
             <h2>3. Sound Design</h2>
             <p>In "The Attic", sound is not an environmental accessory but the core narrative carrier and navigation tool. To build this childhood memory space, we carefully collected and processed 10 nostalgic childhood sound effects and 1 global background audio (assets mainly sourced from Freesound and Pixabay).</p>
@@ -263,6 +270,7 @@
             <h3>The Memory Audio Gallery</h3>
             <p><i>(Please interact with the clips below to hear the processed memory fragments)</i></p>
             <div class="audio-grid">
+                <!-- 音频已全部使用简单的英文命名 -->
                 <div class="audio-card">
                     <strong>Ambient Background</strong> A mix of heartbeats, white noise, and attic floorboard creaks, representing modern anxiety and tension.
                     <audio controls src="bg_noise.mp3"></audio>
@@ -310,6 +318,7 @@
             </div>
         </section>
 
+        <!-- Technical Implementation -->
         <section class="fade-section">
             <h2>4. Technical Implementation</h2>
             <p>The core technical challenge was translating the player's physical behavior in 3D space into dynamic audio mixing parameters in real-time. We built a dual-end communication system based on the OSC (Open Sound Control) protocol, using Unreal Engine 5 for spatial data collection and Max/MSP for real-time algorithmic mixing.</p>
@@ -318,6 +327,7 @@
             <p>Instead of complex spatial audio plugins, we used Blueprints to extract core player behaviors as control signals:</p>
             
             <div class="media-frame">
+                <!-- 简单命名: ue5_osc_blueprint.png -->
                 <img src="ue5_osc_blueprint.png" alt="UE5 OSC Blueprint">
                 <div class="caption">UE5 blueprint sends speed and distance data via OSC.</div>
             </div>
@@ -326,6 +336,7 @@
             </ul>
 
             <div class="media-frame">
+                <!-- 简单命名: ue5_light_mapping.png -->
                 <img src="ue5_light_mapping.png" alt="UE5 Light Mapping Blueprint">
                 <div class="caption">Map Range Clamped node maps distance to light intensity.</div>
             </div>
@@ -337,6 +348,7 @@
             <p>Max/MSP acts as the "master mixing board", translating cold numbers into emotional sound experiences.</p>
 
             <div class="media-frame">
+                <!-- 简单命名: max_routing.png -->
                 <img src="max_routing.png" alt="Max MSP Routing">
                 <div class="caption">Max/MSP receives UDP signals and routes data.</div>
             </div>
@@ -345,6 +357,7 @@
             </ul>
 
             <div class="media-frame">
+                <!-- 简单命名: max_bg_suppression.png -->
                 <img src="max_bg_suppression.png" alt="Max MSP Background Suppression">
                 <div class="caption">Background suppression logic with pak and zl.sort.</div>
             </div>
@@ -353,6 +366,7 @@
             </ul>
 
             <div class="media-frame">
+                <!-- 简单命名: max_speed_modulation.png -->
                 <img src="max_speed_modulation.png" alt="Max MSP Speed Modulation">
                 <div class="caption">Speed mapped to audio modulation for distortion noise.</div>
             </div>
@@ -361,6 +375,7 @@
             </ul>
         </section>
 
+        <!-- Reflection & References -->
         <section class="fade-section">
             <h2>5. Reflection & References</h2>
             
@@ -390,27 +405,32 @@
 
     </div>
 
+    <!-- 强制清理系统生成的 cite 乱码脚本 (100% 保证页面干净) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 滚动淡入效果
             const sections = document.querySelectorAll(".fade-section");
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver(function(entries, observer) {
+            const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("visible");
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.15 });
+            sections.forEach(section => observer.observe(section));
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
+            // 清理 Cite 乱码逻辑
+            function cleanCitations(node) {
+                if (node.nodeType === 3) {
+                    // 正则匹配类似 或 的文本并消除
+                    node.nodeValue = node.nodeValue.replace(/\+\]/g, '');
+                } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
+                    for (let i = 0; i < node.childNodes.length; i++) {
+                        cleanCitations(node.childNodes[i]);
+                    }
+                }
+            }
+            cleanCitations(document.body);
         });
     </script>
 </body>
