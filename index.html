@@ -399,7 +399,7 @@
 
     </div>
 
-    <!-- 纯净版：只保留页面滚动淡入动画 -->
+    <!-- 修复版：强制只要露出 0% 就立刻触发显示动画 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll(".fade-section");
@@ -409,7 +409,10 @@
                         entry.target.classList.add("visible");
                     }
                 });
-            }, { threshold: 0.15 });
+            }, { 
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0 // 核心修复点：将 0.15 改为 0，不论内容多长，只要露出边缘就强制浮现！
+            });
             
             sections.forEach(section => observer.observe(section));
         });
