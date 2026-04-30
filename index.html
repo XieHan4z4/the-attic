@@ -238,7 +238,7 @@
 
             <h3>Virtual Restraint & Scene Layout</h3>
             <div class="media-frame">
-                <!-- 注意这里：加上了 resources/ 路径 -->
+                <!-- 图片路径保留了 resources/ -->
                 <img src="resources/ue5_scene_layout.jpg" alt="UE5 Scene Layout">
                 <div class="caption">Virtual Layout: UE5 scene layout where 10 memory objects are evenly distributed along the edges.</div>
             </div>
@@ -246,7 +246,6 @@
 
             <h3>Physical Interaction & Exhibition Setup</h3>
             <div class="media-frame">
-                <!-- 注意这里：加上了 resources/ 路径 -->
                 <img src="resources/exhibition_setup.jpg" alt="Exhibition Setup">
                 <div class="caption">Exhibition site with projector, dual speakers, and controller.</div>
             </div>
@@ -270,7 +269,7 @@
             <h3>The Memory Audio Gallery</h3>
             <p><i>(Please interact with the clips below to hear the processed memory fragments)</i></p>
             <div class="audio-grid">
-                <!-- 所有音频也都加上了 resources/ 路径 -->
+                <!-- 音频路径保留了 resources/ -->
                 <div class="audio-card">
                     <strong>Ambient Background</strong> A mix of heartbeats, white noise, and attic floorboard creaks, representing modern anxiety and tension.
                     <audio controls src="resources/bg_noise.mp3"></audio>
@@ -327,7 +326,6 @@
             <p>Instead of complex spatial audio plugins, we used Blueprints to extract core player behaviors as control signals:</p>
             
             <div class="media-frame">
-                <!-- 加上了 resources/ 路径 -->
                 <img src="resources/ue5_osc_blueprint.png" alt="UE5 OSC Blueprint">
                 <div class="caption">UE5 blueprint sends speed and distance data via OSC.</div>
             </div>
@@ -401,7 +399,7 @@
 
     </div>
 
-    <!-- 彻底清理系统 Cite 乱码 + 滚动淡入效果 -->
+    <!-- 纯净版：只保留页面滚动淡入动画 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const sections = document.querySelectorAll(".fade-section");
@@ -412,18 +410,8 @@
                     }
                 });
             }, { threshold: 0.15 });
+            
             sections.forEach(section => observer.observe(section));
-
-            function cleanCitations(node) {
-                if (node.nodeType === 3) {
-                    node.nodeValue = node.nodeValue.replace(/\/g, '').replace(/\+\]/g, '');
-                } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
-                    for (let i = 0; i < node.childNodes.length; i++) {
-                        cleanCitations(node.childNodes[i]);
-                    }
-                }
-            }
-            cleanCitations(document.body);
         });
     </script>
 </body>
