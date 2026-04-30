@@ -238,16 +238,16 @@
 
             <h3>Virtual Restraint & Scene Layout</h3>
             <div class="media-frame">
-                <!-- 简单命名: ue5_scene_layout.jpg -->
-                <img src="ue5_scene_layout.jpg" alt="UE5 Scene Layout">
+                <!-- 注意这里：加上了 resources/ 路径 -->
+                <img src="resources/ue5_scene_layout.jpg" alt="UE5 Scene Layout">
                 <div class="caption">Virtual Layout: UE5 scene layout where 10 memory objects are evenly distributed along the edges.</div>
             </div>
             <p>During the UE5 scene construction, we deliberately deleted conventional global illumination components like the Sky Sphere and Directional Light to create a near-pitch-black attic environment. Logically, we placed the 10 memory objects (e.g., guitar, clock) evenly around the edges of the room. This physical layout has clear sound experience considerations: when players are in the center, they are far from all objects, and all sounds intertwine into an even, blurry, chaotic noise; but when players grope in the dark and hit a wall, the physical boundary collision guides them to follow the edges, discovering specific hidden memories one by one.</p>
 
             <h3>Physical Interaction & Exhibition Setup</h3>
             <div class="media-frame">
-                <!-- 简单命名: exhibition_setup.jpg -->
-                <img src="exhibition_setup.jpg" alt="Exhibition Setup">
+                <!-- 注意这里：加上了 resources/ 路径 -->
+                <img src="resources/exhibition_setup.jpg" alt="Exhibition Setup">
                 <div class="caption">Exhibition site with projector, dual speakers, and controller.</div>
             </div>
             <p>For the physical exhibition, we used a projector, dual-channel speakers, and a game controller to build the interactive physical space. Since the game interior is extremely dark, if the outside light is too bright, the projection would be a meaningless black screen; thus, the physical exhibition space had to be kept highly dark. This compromise fostered a wonderful artistic effect: the darkness of physical and virtual spaces overlapped, breaking the screen boundaries and greatly enhancing the immersion of being in a dark attic.</p>
@@ -270,50 +270,50 @@
             <h3>The Memory Audio Gallery</h3>
             <p><i>(Please interact with the clips below to hear the processed memory fragments)</i></p>
             <div class="audio-grid">
-                <!-- 音频已全部使用简单的英文命名 -->
+                <!-- 所有音频也都加上了 resources/ 路径 -->
                 <div class="audio-card">
                     <strong>Ambient Background</strong> A mix of heartbeats, white noise, and attic floorboard creaks, representing modern anxiety and tension.
-                    <audio controls src="bg_noise.mp3"></audio>
+                    <audio controls src="resources/bg_noise.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>01. Acoustic Guitar</strong> Removed modern crispness, preserving the warmth and wooden resonance of the strings.
-                    <audio controls src="guitar.mp3"></audio>
+                    <audio controls src="resources/guitar.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>02. Teddy Bear / Music Box</strong> A music box melody mixed with distant sounds of children playing, creating a pure childhood atmosphere.
-                    <audio controls src="musicbox.mp3"></audio>
+                    <audio controls src="resources/musicbox.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>03. Game Controller</strong> Classic Super Mario background music processed with distortion, as if coming from an aging small TV.
-                    <audio controls src="mario.mp3"></audio>
+                    <audio controls src="resources/mario.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>04. Cassette Tape</strong> Highly era-marked Chinese middle school English listening materials, accompanied by the heavy mechanical sound of loading a cassette.
-                    <audio controls src="tape.mp3"></audio>
+                    <audio controls src="resources/tape.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>05. Mechanical Clock</strong> The slow, regular ticking of a mechanical clock, symbolizing the stagnation of time in the memory space.
-                    <audio controls src="clock.mp3"></audio>
+                    <audio controls src="resources/clock.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>06. Radio</strong> BBC radio broadcasts with interference, as if capturing a time-space slice of a past day.
-                    <audio controls src="radio.mp3"></audio>
+                    <audio controls src="resources/radio.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>07. CRT TV</strong> The characteristic high-frequency current sound of an old TV mixed with blurry built-in game sound effects.
-                    <audio controls src="tv.mp3"></audio>
+                    <audio controls src="resources/tv.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>08. Toy Soldier</strong> Excerpts from Tchaikovsky's Nutcracker Suite, combined with the mechanical sound of winding and releasing a clockwork toy.
-                    <audio controls src="soldier.mp3"></audio>
+                    <audio controls src="resources/soldier.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>09. Wooden Train</strong> The whistle of an old train and the rumble of wheels rolling over tracks.
-                    <audio controls src="train.mp3"></audio>
+                    <audio controls src="resources/train.mp3"></audio>
                 </div>
                 <div class="audio-card">
                     <strong>10. Notes & Letters</strong> A soothing piano melody underlying the friction sound of a pencil writing hard on rough paper.
-                    <audio controls src="notes.mp3"></audio>
+                    <audio controls src="resources/notes.mp3"></audio>
                 </div>
             </div>
         </section>
@@ -327,8 +327,8 @@
             <p>Instead of complex spatial audio plugins, we used Blueprints to extract core player behaviors as control signals:</p>
             
             <div class="media-frame">
-                <!-- 简单命名: ue5_osc_blueprint.png -->
-                <img src="ue5_osc_blueprint.png" alt="UE5 OSC Blueprint">
+                <!-- 加上了 resources/ 路径 -->
+                <img src="resources/ue5_osc_blueprint.png" alt="UE5 OSC Blueprint">
                 <div class="caption">UE5 blueprint sends speed and distance data via OSC.</div>
             </div>
             <ul class="technical-list">
@@ -336,8 +336,7 @@
             </ul>
 
             <div class="media-frame">
-                <!-- 简单命名: ue5_light_mapping.png -->
-                <img src="ue5_light_mapping.png" alt="UE5 Light Mapping Blueprint">
+                <img src="resources/ue5_light_mapping.png" alt="UE5 Light Mapping Blueprint">
                 <div class="caption">Map Range Clamped node maps distance to light intensity.</div>
             </div>
             <ul class="technical-list">
@@ -348,8 +347,7 @@
             <p>Max/MSP acts as the "master mixing board", translating cold numbers into emotional sound experiences.</p>
 
             <div class="media-frame">
-                <!-- 简单命名: max_routing.png -->
-                <img src="max_routing.png" alt="Max MSP Routing">
+                <img src="resources/max_routing.png" alt="Max MSP Routing">
                 <div class="caption">Max/MSP receives UDP signals and routes data.</div>
             </div>
             <ul class="technical-list">
@@ -357,8 +355,7 @@
             </ul>
 
             <div class="media-frame">
-                <!-- 简单命名: max_bg_suppression.png -->
-                <img src="max_bg_suppression.png" alt="Max MSP Background Suppression">
+                <img src="resources/max_bg_suppression.png" alt="Max MSP Background Suppression">
                 <div class="caption">Background suppression logic with pak and zl.sort.</div>
             </div>
             <ul class="technical-list">
@@ -366,8 +363,7 @@
             </ul>
 
             <div class="media-frame">
-                <!-- 简单命名: max_speed_modulation.png -->
-                <img src="max_speed_modulation.png" alt="Max MSP Speed Modulation">
+                <img src="resources/max_speed_modulation.png" alt="Max MSP Speed Modulation">
                 <div class="caption">Speed mapped to audio modulation for distortion noise.</div>
             </div>
             <ul class="technical-list">
@@ -405,10 +401,9 @@
 
     </div>
 
-    <!-- 强制清理系统生成的 cite 乱码脚本 (100% 保证页面干净) -->
+    <!-- 彻底清理系统 Cite 乱码 + 滚动淡入效果 -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 滚动淡入效果
             const sections = document.querySelectorAll(".fade-section");
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
@@ -419,11 +414,9 @@
             }, { threshold: 0.15 });
             sections.forEach(section => observer.observe(section));
 
-            // 清理 Cite 乱码逻辑
             function cleanCitations(node) {
                 if (node.nodeType === 3) {
-                    // 正则匹配类似 或 的文本并消除
-                    node.nodeValue = node.nodeValue.replace(/\+\]/g, '');
+                    node.nodeValue = node.nodeValue.replace(/\/g, '').replace(/\+\]/g, '');
                 } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
                     for (let i = 0; i < node.childNodes.length; i++) {
                         cleanCitations(node.childNodes[i]);
